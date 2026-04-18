@@ -1,0 +1,14 @@
+{
+  "name": "reelingit",
+  "version": "1.0.0",
+  "description": "A movie (and optional TV) discovery experience with a dark, cinematic UI designed for fast browsing, instant search, and rich title detail pages.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
