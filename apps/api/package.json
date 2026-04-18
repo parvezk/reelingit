@@ -1,0 +1,13 @@
+{
+  "name": "@reelingit/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Express BFF API for ReelingIt. Reads DATABASE_URL; hides DB details from the web app.",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
