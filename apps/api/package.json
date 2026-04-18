@@ -5,9 +5,18 @@
   "type": "module",
   "description": "Express BFF API for ReelingIt. Reads DATABASE_URL; hides DB details from the web app.",
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio"
   },
   "devDependencies": {
+    "@types/pg": "^8.20.0",
+    "drizzle-kit": "^0.31.10",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.45.2",
+    "pg": "^8.20.0"
   }
 }
