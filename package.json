@@ -1,14 +1,19 @@
 {
   "name": "reelingit",
-  "version": "1.0.0",
+  "version": "0.0.0",
+  "private": true,
   "description": "A movie (and optional TV) discovery experience with a dark, cinematic UI designed for fast browsing, instant search, and rich title detail pages.",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "pnpm -r --if-present run build",
+    "dev": "pnpm -r --parallel --if-present run dev",
+    "lint": "pnpm -r --if-present run lint",
+    "typecheck": "pnpm -r --if-present run typecheck",
+    "test": "pnpm -r --if-present run test"
   },
-  "author": "",
-  "license": "ISC"
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "packageManager": "pnpm@9.12.3",
+  "license": "UNLICENSED"
 }

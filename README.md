@@ -50,17 +50,32 @@ reelingit/
   README.md
 ```
 
-> Note: the `apps/` workspaces are being scaffolded — see the Linear milestones below for current status.
+> The `apps/` workspaces are scaffolded as pnpm workspace stubs. See the Linear milestones below for remaining work per app.
 
 ## Getting started
 
-> This section will expand as the apps are scaffolded. The intended local setup:
+Prerequisites: Node `>=20` (see [`.nvmrc`](./.nvmrc)) and pnpm `>=9`.
 
-1. Install dependencies at the repo root.
-2. Copy example env files:
-   - `apps/api/.env` — `DATABASE_URL`, `PORT` (e.g. `4002`), `CORS_ORIGIN` (e.g. `http://localhost:3000`)
-   - `apps/web/.env` — `NEXT_PUBLIC_API_URL` (e.g. `http://localhost:4002`)
-3. Run the API (`apps/api`) and the web app (`apps/web`) in parallel.
+```bash
+pnpm install
+```
+
+Copy env files (template in `.env.example` once PK-123 lands):
+
+- `apps/api/.env` — `DATABASE_URL`, `PORT` (e.g. `4002`), `CORS_ORIGIN` (e.g. `http://localhost:3000`)
+- `apps/web/.env` — `NEXT_PUBLIC_API_URL` (e.g. `http://localhost:4002`)
+
+Workspace scripts (root):
+
+```bash
+pnpm dev        # run all apps in parallel
+pnpm build      # build all apps
+pnpm typecheck  # tsc --noEmit across workspaces
+pnpm lint       # lint across workspaces
+pnpm test       # test across workspaces
+```
+
+All root scripts use `pnpm -r --if-present`, so a workspace missing a given script is skipped, not failed.
 
 See [`docs/database-cli-guide-reelingit.md`](./docs/database-cli-guide-reelingit.md) for database and migration workflows.
 
