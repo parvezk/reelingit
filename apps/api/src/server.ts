@@ -1,8 +1,11 @@
 import express from "express";
 import cors from "cors";
 
-const PORT = Number(process.env.PORT ?? 4002);
-const CORS_ORIGIN = process.env.CORS_ORIGIN ?? "http://localhost:3000";
+const envOr = (value: string | undefined, fallback: string) =>
+  value && value.length > 0 ? value : fallback;
+
+const PORT = Number(envOr(process.env.PORT, "4002"));
+const CORS_ORIGIN = envOr(process.env.CORS_ORIGIN, "http://localhost:3000");
 
 const app = express();
 
