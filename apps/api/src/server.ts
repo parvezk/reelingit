@@ -13,7 +13,7 @@ const app = express();
 
 app.use(requestId);
 app.use(httpLogger);
-app.use(cors({ origin: CORS_ORIGIN }));
+app.use(cors({ origin: CORS_ORIGIN, exposedHeaders: ["x-request-id"] }));
 
 app.get("/health", (_req, res) => {
   res.json({ status: "ok", uptime: process.uptime() });
