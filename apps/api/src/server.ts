@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+import { requestId } from "./middleware/requestId.js";
+import { httpLogger, logger } from "./middleware/logger.js";
 
 const envOr = (value: string | undefined, fallback: string) =>
   value && value.length > 0 ? value : fallback;
@@ -9,18 +11,20 @@ const CORS_ORIGIN = envOr(process.env.CORS_ORIGIN, "http://localhost:3000");
 
 const app = express();
 
-app.use(cors({ origin: CORS_ORIGIN }));
+app.use(requestId);
+app.use(httpLogger);
+app.use(cors({ origin: CORS_ORIGIN, exposedHeaders: ["x-request-id"] }));
 
 app.get("/health", (_req, res) => {
   res.json({ status: "ok", uptime: process.uptime() });
 });
 
 const server = app.listen(PORT, () => {
-  console.log(`api listening on :${PORT} (cors: ${CORS_ORIGIN})`);
+  logger.info({ port: PORT, corsOrigin: CORS_ORIGIN }, "api listening");
 });
 
 const shutdown = (signal: string) => {
-  console.log(`received ${signal}, shutting down`);
+  logger.info({ signal }, "shutting down");
   server.close(() => process.exit(0));
 };
 
